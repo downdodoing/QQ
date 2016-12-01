@@ -26,14 +26,16 @@
                 android:id="@+id/username"
                 style="@style/editText_s"
                 android:background="@drawable/edittext_back"
-                android:hint="QQ号" />
+                android:hint="QQ号"
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/password"
                 style="@style/editText_s"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/edittext_back"
-                android:hint="密码" />
+                android:hint="密码"
+                android:maxLines="1" />
 
             <Button
                 android:id="@+id/log_in_bnt"
