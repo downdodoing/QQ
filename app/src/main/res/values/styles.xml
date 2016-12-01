@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="myTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="match_parent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="w_m_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="editText_s">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/edittext_c</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_back</item>
+        <item name="android:layout_height">@dimen/editText_h</item>
+        <item name="android:paddingLeft">@dimen/margin_l_r</item>
+    </style>
+
+    <style name="margin_l_r" parent="w_m_content">
+        <item name="android:layout_marginLeft">@dimen/margin_l_r</item>
+        <item name="android:layout_marginRight">@dimen/margin_l_r</item>
+    </style>
+</resources>
