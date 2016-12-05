@@ -1,13 +1,11 @@
 package com.example.qq.activity.interfaceV;
 
 /**
- * Created by 小凳子 on 2016/11/23.
+ * Created by 小凳子 on 2016/12/3.
  */
 
-public interface ILogin {
+public interface IRegister {
     public void init();
-
-    public void clickCheckBox();
 
     public void setOnTouch();
 }

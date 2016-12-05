@@ -5,4 +5,13 @@
     <dimen name="editText_h">42dp</dimen>
     <dimen name="log_text_s">16sp</dimen>
     <dimen name="margin_l_r">10dp</dimen>
+    <dimen name="title_textSize">18sp</dimen>
+    <dimen name="title_height">50dp</dimen>
+    <dimen name="margin_top">20dp</dimen>
+    <dimen name="edittext_size">16sp</dimen>
+    <dimen name="checkBox_w_h">17dp</dimen>
+    <dimen name="bnt_margin_top">20dp</dimen>
+    <dimen name="bnt_textSize">18sp</dimen>
+    <dimen name="weight_w_h">0dp</dimen>
+    <dimen name="p_e_width">50dp</dimen>
 </resources>

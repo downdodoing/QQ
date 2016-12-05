@@ -3,80 +3,6 @@
     style="@style/match_parent"
     android:background="@color/themeC">
 
-    <LinearLayout
-        style="@style/match_parent"
-        android:orientation="vertical">
-
-        <com.example.qq.util.circleImage.CircleImage
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:src="@mipmap/fit" />
-        <!--登录-->
-        <LinearLayout
-            android:id="@+id/login"
-            style="@style/w_m_content"
-            android:layout_marginTop="20dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/username"
-                style="@style/editText_s"
-                android:background="@drawable/edittext_back"
-                android:hint="QQ号"
-                android:maxLines="1" />
-
-            <EditText
-                android:id="@+id/password"
-                style="@style/editText_s"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/edittext_back"
-                android:hint="密码"
-                android:maxLines="1" />
-
-            <Button
-                android:id="@+id/log_in_bnt"
-                style="@style/margin_l_r"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bnt_back"
-                android:text="登录"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginLeft="@dimen/margin_l_r"
-                android:layout_marginTop="18dp"
-                android:gravity="center_vertical">
-
-                <CheckBox
-                    android:id="@+id/serve_item"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:background="@drawable/radio_select"
-                    android:button="@null"
-                    android:checked="true" />
-
-                <TextView
-                    style="@style/wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:text="我已经阅读并同意" />
-
-                <TextView
-                    style="@style/wrap_content"
-                    android:text="服务款项"
-                    android:textColor="@color/log_text" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
     <RelativeLayout
         style="@style/margin_l_r"
         android:layout_alignParentBottom="true"
@@ -98,5 +24,73 @@
             android:textColor="@color/log_text"
             android:textSize="@dimen/log_text_s" />
     </RelativeLayout>
+
+    <LinearLayout
+        style="@style/match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <com.example.qq.util.circleImage.CircleImage
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/fit" />
+        <!--登录-->
+        <LinearLayout
+            android:id="@+id/login"
+            style="@style/w_m_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/username"
+                style="@style/editText_s"
+                android:hint="QQ号" />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/editText_s"
+                android:layout_marginTop="2dp"
+                android:hint="密码"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/log_in_bnt"
+                style="@style/login_bnt"
+                android:layout_height="45dp"
+                android:background="@drawable/bnt_back_up"
+                android:text="登录"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="@dimen/margin_l_r"
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical">
+
+                <CheckBox
+                    android:id="@+id/serve_item"
+                    style="@style/checkBox_style" />
+
+                <TextView
+                    style="@style/wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="我已经阅读并同意" />
+
+                <TextView
+                    android:id="@+id/show_service"
+                    style="@style/wrap_content"
+                    android:onClick="onclick"
+                    android:text="服务款项"
+                    android:textColor="@color/log_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
