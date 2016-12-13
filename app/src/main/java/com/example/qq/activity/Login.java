@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.qq.MyApplication;
 import com.example.qq.R;
 import com.example.qq.activity.interfaceV.ILogin;
 import com.example.qq.util.animation_.Animation_;
@@ -20,12 +21,10 @@ public class Login extends BaseActivity implements ILogin {
     private Button log_in_bnt;
     private TextView show_service, disable_login, register;
 
-    private final BaseActivity ACTIVITY = this;
-
-
     @Override
     public void initView(Bundle savedInstanceState) {
         setContentView(R.layout.login);
+        MyApplication.addActivity(this);
         init();
     }
 
@@ -60,9 +59,9 @@ public class Login extends BaseActivity implements ILogin {
     }
 
     public void setOnTouch() {
-        this.setOnTouch(log_in_bnt, R.drawable.bnt_back_down, R.drawable.bnt_back_up, this,true);
-        this.setOnTouch(show_service, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this,true);
-        this.setOnTouch(disable_login, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this,true);
-        this.setOnTouch(register, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this,true);
+        this.setOnTouch(log_in_bnt, R.drawable.bnt_back_down, R.drawable.bnt_back_up, this, true);
+        this.setOnTouch(show_service, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this, true);
+        this.setOnTouch(disable_login, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this, true);
+        this.setOnTouch(register, Color.rgb(132, 218, 249), Color.rgb(0, 165, 224), this, true);
     }
 }

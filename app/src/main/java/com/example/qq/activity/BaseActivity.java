@@ -2,9 +2,9 @@ package com.example.qq.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +13,11 @@ import android.widget.Toast;
 
 import com.example.qq.MyApplication;
 import com.example.qq.R;
+import com.jph.takephoto.app.TakePhotoActivity;
 
-import cn.smssdk.SMSSDK;
+import java.io.ByteArrayOutputStream;
 
-/**
- * Created by 小凳子 on 2016/11/23.
- */
-
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends TakePhotoActivity {
     private boolean isValid;
 
     @Override
@@ -70,6 +67,13 @@ public abstract class BaseActivity extends AppCompatActivity {
                             intentToNext();
                         } else if (id == R.id.get_verifaction) {
                             afterClickgetVerifaction();
+                            //注册页面
+                        } else if (id == R.id.login_bnt) {
+                            MyApplication.removeActitivy(2);
+                        } else if (id == R.id.album || id == R.id.take_photo) {
+                            getPhoto(v);
+                        } else if (id == R.id.register_bnt) {
+                            register();
                         }
                         break;
                     case MotionEvent.ACTION_MOVE:
@@ -80,6 +84,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
+    public void register() {
+
+    }
+
+    public void getPhoto(View view) {
+    }
+
     //空方法声明,在子类中重写
     public void afterClickgetVerifaction() {
     }
@@ -88,13 +99,27 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void intentToNext() {
     }
 
-    /*
-    * 获取验证码
-    * handler:调用该方法传递handler用以处理返回的数据
-    * */
-    public void getVerifavction(Activity activity, Handler handler) {
-        //初始化发送短信SDK
-        SMSSDK.initSDK(activity, MyApplication.APPKEY, MyApplication.APPSECRET);
+    //将bitmap转化为二进制
+    public byte[] getByteBitmap(Bitmap bitmap) {
+        byte[] compressData = null;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        compressData = outputStream.toByteArray();
+        try {
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return compressData;
+    }
+
+    //将二进制转化为bitmap
+    public Bitmap getBitmapByByte(byte[] data) {
+        if (null != data && data.length > 0) {
+            return BitmapFactory.decodeByteArray(data, 0, data.length);
+        }
+        return null;
     }
 
     public void showToast(Activity activity, String hintStr) {

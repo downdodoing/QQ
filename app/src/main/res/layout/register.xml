@@ -1,10 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/themeC"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_parent"
+    android:background="@mipmap/backgoundi"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
-    <include layout="@layout/title" />
+    <LinearLayout
+        style="@style/w_m_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:gravity="center_horizontal">
 
-</LinearLayout>
+        <TextView
+            style="@style/wrap_content"
+            android:text="已有账号,"
+            android:textSize="@dimen/log_text_s" />
+
+        <TextView
+            android:id="@+id/login_bnt"
+            style="@style/wrap_content"
+            android:text="点击去登录>>"
+            android:textColor="@color/log_text"
+            android:textSize="@dimen/log_text_s" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title" />
+
+        <RelativeLayout
+            style="@style/wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/head_photo"
+                style="@style/circleImage"
+                android:background="@drawable/circle_back" />
+
+            <TextView
+                android:id="@+id/set_photo"
+                style="@style/wrap_content"
+                android:layout_centerInParent="true"
+                android:text="点击设置头像"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/w_m_content"
+            android:layout_marginTop="@dimen/margin_top">
+
+            <TextView
+                style="@style/p_textview_style"
+                android:background="@drawable/edittext_back"
+                android:text="电话"
+                android:textColor="@color/log_text" />
+
+            <TextView
+                android:id="@+id/phonNum"
+                android:layout_width="@dimen/weight_w_h"
+                android:layout_height="@dimen/p_e_width"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="3"
+                android:background="@drawable/edittext_back"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_l_r"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edittext_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/w_m_content"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/p_textview_style"
+                android:background="@drawable/edittext_back"
+                android:text="昵称"
+                android:textColor="@color/log_text" />
+
+            <EditText
+                android:id="@+id/netName"
+                style="@style/p_edittext_style"
+                android:hint="请输入昵称"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/w_m_content"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/p_textview_style"
+                android:background="@drawable/edittext_back"
+                android:text="年龄"
+                android:textColor="@color/log_text" />
+
+            <EditText
+                android:id="@+id/age"
+                style="@style/p_edittext_style"
+                android:hint="请输入年龄" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/w_m_content"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/p_textview_style"
+                android:background="@drawable/edittext_back"
+                android:text="性别"
+                android:textColor="@color/log_text" />
+
+            <Spinner
+                android:id="@+id/sex"
+                style="@style/p_edittext_style"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_bnt"
+            style="@style/login_bnt"
+            android:text="注册" />
+
+    </LinearLayout>
+
+    <include layout="@layout/select_photo_from" />
+</RelativeLayout>

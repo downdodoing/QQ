@@ -7,4 +7,5 @@
     <color name="log_text">#00a5e0</color>
     <color name="title_back_color">#6f564b</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>

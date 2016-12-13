@@ -7,15 +7,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.qq.MyApplication;
 import com.example.qq.R;
 import com.example.qq.activity.interfaceV.IPhoneNum;
 import com.example.qq.util.timer.Timer;
@@ -38,15 +37,14 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
 
     private MyHandler handler;
 
-    //用于存储获取验证码后返回结果
-    private int event;
-    private int result;
-
     private VerificationCode verificationCode;
+    private String phoneNum;
 
     @Override
     public void initView(Bundle savedInstanceState) {
         setContentView(R.layout.phonenum);
+        //将当前Activity添加在数据结构中以便结束
+        MyApplication.addActivity(this);
         init();
     }
 
@@ -98,7 +96,7 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String phoneNum = phone_num.getText().toString();
+                phoneNum = phone_num.getText().toString();
                 if (11 == phoneNum.length()) {
                     isValid = true;
                     clickCheckBox();
@@ -147,19 +145,24 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
 
     @Override
     public void intentToNext() {
-        String mCode = input_verifaction.getText().toString();
-        String phoneNum = phone_num.getText().toString();
-        if (11 == phoneNum.length()) {
-            if (!mCode.equals("")) {
-                //提交输入的验证码
-                handleVerificationCode(phoneNum);
-                verificationCode.submitCode(mCode);
-            } else {
-                this.showToast(this, "请输入验证码");
-            }
-        } else {
-            this.showToast(this, "请输入正确的手机号码");
-        }
+//        String mCode = input_verifaction.getText().toString();
+        phoneNum = phone_num.getText().toString();
+//
+//        if (11 == phoneNum.length()) {
+//            if (!mCode.equals("")) {
+//                //提交输入的验证码
+//                handleVerificationCode(phoneNum);
+//                verificationCode.submitCode(mCode);
+//            } else {
+//                this.showToast(this, "请输入验证码");
+//            }
+//        } else {
+//            this.showToast(this, "请输入正确的手机号码");
+//        }
+
+        Intent intent = new Intent(this, Register.class);
+        intent.putExtra("phoneNum", phoneNum);
+        startActivity(intent);
     }
 
     @Override
@@ -193,7 +196,7 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
 
     //短信验证码的发送
     public boolean get_verifaction() {
-        String phoneNum = phone_num.getText().toString();
+        phoneNum = phone_num.getText().toString();
         if (phoneNum.length() == 11) {
             handleVerificationCode(phoneNum);
             verificationCode.getVerificationCode();
@@ -210,13 +213,17 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
     }
 
     public void handler_verifaction(Message msg) {
-        event = msg.arg1;
-        result = msg.arg2;
+        int event = msg.arg1;
+        int result = msg.arg2;
         if (result == SMSSDK.RESULT_COMPLETE) {
             if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                 this.showToast(this, "验证码发送成功");
             } else if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {//验证码校验成功
-                this.showToast(this, "提交验证码成功");
+                Intent intent = new Intent(this, Register.class);
+                intent.putExtra("phoneNum", phoneNum);
+                startActivity(intent);
+            } else {
+                this.showToast(this, "验证码错误");
             }
         }
         verificationCode.unRegister();

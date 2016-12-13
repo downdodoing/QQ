@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_parent"
-    android:background="@color/themeC">
+    android:background="@mipmap/backgoundi">
 
     <RelativeLayout
         style="@style/margin_l_r"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp">
+        android:layout_marginBottom="@dimen/margin_bottom">
 
         <TextView
             android:id="@+id/disable_login"
@@ -32,9 +32,7 @@
         android:orientation="vertical">
 
         <com.example.qq.util.circleImage.CircleImage
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
+            style="@style/circleImage"
             android:layout_marginTop="40dp"
             android:src="@mipmap/fit" />
         <!--登录-->
@@ -61,10 +59,7 @@
             <Button
                 android:id="@+id/log_in_bnt"
                 style="@style/login_bnt"
-                android:layout_height="45dp"
-                android:background="@drawable/bnt_back_up"
-                android:text="登录"
-                android:textColor="@color/white" />
+                android:text="登录" />
 
             <LinearLayout
                 android:layout_width="match_parent"

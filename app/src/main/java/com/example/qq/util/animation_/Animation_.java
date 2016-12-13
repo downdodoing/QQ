@@ -27,16 +27,6 @@ public class Animation_ {
         this.view = view;
     }
 
-    public void setTranslateAnimationranslate(int fromXDelta, int toXDelta, int fromYDelta, int toYDelta) {
-        translateAnimation = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, fromXDelta,
-                Animation.RELATIVE_TO_SELF, toXDelta,
-                Animation.RELATIVE_TO_SELF, fromYDelta,
-                Animation.RELATIVE_TO_SELF, toYDelta
-        );
-        animation_t(translateAnimation);
-    }
-
     /*
     * 默认移动位移
     * */
@@ -50,20 +40,6 @@ public class Animation_ {
         animation_t(translateAnimation);
     }
 
-    /*
-    * fromXScale:X坐标开始尺寸
-    *toXScale：X坐标结束尺寸
-    *pivotX：属性为动画相对于物件的X坐标的开始位置
-    * */
-    public void setScaleAnimation(float fromXScale, float toXScale, float fromYScale, float toYScale, float pivotX, float pivotY) {
-        scaleAnimation = new ScaleAnimation(
-                fromXScale, toXScale,
-                fromYScale, toYScale,
-                Animation.RELATIVE_TO_SELF, pivotX, Animation.RELATIVE_TO_SELF, pivotY
-        );
-        animation_t(scaleAnimation);
-    }
-
     public void setScaleAnimation() {
         scaleAnimation = new ScaleAnimation(
                 0f, 1.0f,
@@ -73,22 +49,9 @@ public class Animation_ {
         animation_t(scaleAnimation);
     }
 
-    public void setAlphaAnimation(float fromAlpha, float toAlpha) {
-        alphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
-        animation_t(alphaAnimation);
-    }
-
     public void setAlphaAnimation() {
         alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         animation_t(alphaAnimation);
-    }
-
-    public void setRotateAnimation(float fromDegrees, float toDegrees, float pivotX, float pivotY) {
-        rotateAnimation = new RotateAnimation(
-                fromDegrees, toDegrees,
-                RotateAnimation.RELATIVE_TO_SELF, pivotX, RotateAnimation.RELATIVE_TO_SELF, pivotY
-        );
-        animation_t(rotateAnimation);
     }
 
     public void setRotateAnimation() {

@@ -12,12 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import org.w3c.dom.Attr;
-
-/**
- * Created by 小凳子 on 2016/11/23.
- */
-
 public class CircleImage extends ImageView {
     private Paint paint;
 
