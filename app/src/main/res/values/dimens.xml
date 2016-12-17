@@ -17,4 +17,9 @@
     <dimen name="circle_img_w">90dp</dimen>
     <dimen name="margin_bottom">18dp</dimen>
     <dimen name="bnt_height">45dp</dimen>
+
+    <dimen name="main_page_menu_img_w">22dp</dimen>
+    <dimen name="main_page_menu_item_height">48dp</dimen>
+    <dimen name="main_page_guide_textS">12sp</dimen>
+    <dimen name="main_page_guide_pa">4dp</dimen>
 </resources>

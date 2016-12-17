@@ -116,13 +116,11 @@ public class OkHttpClientManager {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                Log.i("Manager",request.body().toString());
                 callBackListener.error(request, e);
             }
 
             @Override
             public void onResponse(Response response) throws IOException {
-                Log.i("Manager",response + " ");
                 callBackListener.success(response);
             }
         });

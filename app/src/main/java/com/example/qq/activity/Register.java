@@ -2,10 +2,9 @@ package com.example.qq.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -19,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -33,8 +31,8 @@ import com.example.qq.presenter.interfaceV.ISetDataListener;
 import com.example.qq.util.circleImage.GlideCircleTransform;
 import com.example.qq.util.jph.CustomerHelper;
 import com.jph.takephoto.model.TResult;
+import com.squareup.okhttp.Response;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class Register extends BaseActivity implements IRegister {
@@ -77,6 +75,7 @@ public class Register extends BaseActivity implements IRegister {
     @Override
     public void init() {
         activity = this;
+        progressBar = (RelativeLayout) findViewById(R.id.progress_bar);
         title = (TextView) findViewById(R.id.title_text);
         back = (TextView) findViewById(R.id.back);
         login_bnt = (TextView) findViewById(R.id.login_bnt);
@@ -196,37 +195,67 @@ public class Register extends BaseActivity implements IRegister {
 
     @Override
     public void register() {
-        String mNetName = netName.getText().toString();
-        String mAge = age.getText().toString();
-
-        if (!isTrue(mNetName)) {
-            this.showToast(this, "请输入昵称");
-        } else if (!isTrue(mAge)) {
-            this.showToast(this, "请输入年龄");
-        } else {
-            User user = new User(mNetName, mAge, compress_head_photo, sex, mPhoneNum);
-            JSONObject joo = (JSONObject) JSON.toJSON(user);
-            UserP userP = new UserP();
-            userP.setSetDataListener(new ISetDataListener() {
-                @Override
-                public void failed() {
-
-                }
-
-                @Override
-                public void success(JSONObject jooo) {
-
-                }
-            });
-            userP.saveUser(joo);
+        if (progressBar.getVisibility() == View.GONE) {
+            String mNetName = netName.getText().toString();
+            String mAge = age.getText().toString();
+            if (isNull(mNetName)) {
+                this.showToast(this, "请输入昵称");
+            } else if (isNull(mAge)) {
+                this.showToast(this, "请输入年龄");
+            } else if (this.isConnect()) {
+                this.setProgressBar();
+                setDefaultHeadPhoto();
+                User user = new User(mNetName, mAge, compress_head_photo, sex, mPhoneNum);
+                intentData(user);
+            } else {
+                this.showToast(this, "请检查网络");
+            }
         }
     }
 
-    public boolean isTrue(String string) {
-        if (string.equals("")) {
-            return false;
-        } else {
-            return true;
+    //将数据传递到后台
+    public void intentData(User user) {
+        JSONObject joo = (JSONObject) JSON.toJSON(user);
+        UserP userP = new UserP();
+        userP.setSetDataListener(new ISetDataListener() {
+            @Override
+            public void failed() {
+                Register.this.showToast(Register.this, "注册失败！");
+            }
+
+            @Override
+            public void success(Response response) {
+                try {
+                    String result = response.body().string();
+                    JSONObject jooo = JSON.parseObject(result);
+                    successGetData(jooo);
+                    Register.this.setProgressBar();
+                } catch (Exception ex) {
+
+                }
+            }
+        });
+        userP.saveUser(joo);
+    }
+
+    //获取数据成功后
+    public void successGetData(JSONObject jooo) {
+        MyApplication.removeActitivy(2);
+        String flag = jooo.getString("flag");
+        String name = jooo.getString("name");
+        //跳转到注册成功页面
+        Intent intent = new Intent(Register.this, RegisterSuccess.class);
+        intent.putExtra("name", name);
+        startActivity(intent);
+    }
+
+    //判断是否设置头像，若没有则设置默认头像
+    public void setDefaultHeadPhoto() {
+        if (null == compress_head_photo) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.fit);
+            if (null != bitmap) {
+                compress_head_photo = getByteBitmap(bitmap);
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.qq.presenter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.qq.activity.interfaceV.IRegister;
+import com.example.qq.entity.Param;
 import com.example.qq.entity.User;
 import com.example.qq.model.UserModel;
 import com.example.qq.model.interfaceV.IUserModel;
@@ -23,12 +24,12 @@ public class UserP implements IUserP {
 
     @Override
     public void saveUser(JSONObject joo) {
-        userModel.saveUser(joo,setDataListener);
+        userModel.saveUser(joo, setDataListener);
     }
 
     @Override
-    public User getUser() {
-        return null;
+    public void getUser(Param[] params) {
+        userModel.getUser(params, setDataListener);
     }
 }
 

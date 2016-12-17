@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/w_m_content"
+    android:layout_marginTop="@dimen/margin_bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/member"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/member" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="了解会员特权" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wallet"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/wallet" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="QQ钱包" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/signature"
+        style="@style/w_m_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/signature" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="个性装扮" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/collection"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/collection" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="我的收藏" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/album"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/album" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="我的相册" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/file" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="我的文件" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/schedule"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/schedule" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="我的日程" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/business_card"
+        style="@style/w_m_content"
+        android:layout_height="@dimen/main_page_menu_item_height"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_page_menu_image"
+            android:src="@mipmap/business_card" />
+
+        <TextView
+            style="@style/main_page_menu_text"
+            android:text="我的名片夹" />
+    </LinearLayout>
+</LinearLayout>

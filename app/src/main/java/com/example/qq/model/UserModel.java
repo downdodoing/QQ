@@ -17,8 +17,8 @@ import java.io.IOException;
 
 public class UserModel implements IUserModel {
     private OkHttpClientManager okHttpClientManager;
-    public final static String ACTION = "/SSM/user/register";
-    private final static String URL = "http://" + MyApplication.IPADRESS + ":" + MyApplication.PORT + ACTION;
+    public String action;
+    private final static String URL = "http://" + MyApplication.IPADRESS + ":" + MyApplication.PORT;
 
     private String result;//用于存储返回的结果
 
@@ -27,31 +27,39 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public void getUser() {
-
-    }
-
-    @Override
-    public void saveUser(JSONObject jooo, final ISetDataListener setDataListener) {
-        Param param = new Param();
-        param.key = "user";
-        param.value = jooo.toJSONString();
-        okHttpClientManager._postAysn(URL, new CallBackListener() {
+    public void getUser(Param[] params, final ISetDataListener setDataListener) {
+        action = "/SSM/user/login";
+        String url = URL + action;
+        okHttpClientManager._postAysn(url, new CallBackListener() {
             @Override
             public void error(Request re, IOException io) {
-                Log.i("UserModel", "error");
                 setDataListener.failed();
             }
 
             @Override
             public void success(Response response) {
-                Log.i("UserModel", "success");
-                try {
-                    JSONObject jooo = (JSONObject) JSON.toJSON(response.body().string());
-                    setDataListener.success(jooo);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                setDataListener.success(response);
+            }
+        }, params);
+    }
+
+    @Override
+    public void saveUser(JSONObject jooo, final ISetDataListener setDataListener) {
+        action = "/SSM/user/register";
+        String url = URL + action;
+
+        Param param = new Param();
+        param.key = "user";
+        param.value = jooo.toJSONString();
+        okHttpClientManager._postAysn(url, new CallBackListener() {
+            @Override
+            public void error(Request re, IOException io) {
+                setDataListener.failed();
+            }
+
+            @Override
+            public void success(Response response) {
+                setDataListener.success(response);
             }
         }, param);
     }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    style="@style/match_parent">
+
+    <TabWidget
+        android:id="@android:id/tabs"
+        style="@style/match_parent"
+        android:visibility="gone"></TabWidget>
+
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        style="@style/match_parent"></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/message"
+            style="@style/main_page_guide"
+            android:drawableTop="@mipmap/smessage"
+            android:text="消息"
+            android:textColor="@color/main_page_guide_textC1" />
+
+        <TextView
+            android:id="@+id/contact"
+            style="@style/main_page_guide"
+            android:drawableTop="@mipmap/contact"
+            android:text="联系人" />
+
+        <TextView
+            android:id="@+id/dynamic"
+            style="@style/main_page_guide"
+            android:drawableTop="@mipmap/ydnamic"
+            android:text="动态" />
+
+    </LinearLayout>
+</TabHost>

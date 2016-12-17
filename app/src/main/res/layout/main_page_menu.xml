@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#513d34"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/show_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/weight_w_h"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/twocode"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/twocode" />
+
+        <LinearLayout
+            style="@style/match_parent"
+            android:layout_marginBottom="@dimen/margin_l_r"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.qq.util.circleImage.CircleImage
+                    android:id="@+id/main_page_icircle"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/margin_l_r"
+                    android:src="@mipmap/fit" />
+
+                <TextView
+                    android:id="@+id/netName"
+                    style="@style/wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:text="稍纵年华"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/signature"
+                style="@style/wrap_content"
+                android:layout_marginLeft="@dimen/margin_l_r"
+                android:layout_marginTop="10dp"
+                android:text="别让结束玷污了开始"
+                android:textColor="@color/white"
+                android:textSize="@dimen/log_text_s" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/weight_w_h"
+        android:layout_weight="6"
+        android:scrollbars="none">
+
+        <include layout="@layout/main_menu_item" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/weight_w_h"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/set"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_l_r"
+            android:layout_weight="2">
+
+            <ImageView
+                android:layout_width="18sp"
+                android:layout_height="18dp"
+                android:src="@mipmap/set" />
+
+            <TextView
+                style="@style/wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="设置"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/moon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_l_r"
+            android:layout_weight="3">
+
+            <ImageView
+                android:layout_width="18sp"
+                android:layout_height="18dp"
+                android:src="@mipmap/moon" />
+
+            <TextView
+                style="@style/wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="夜间"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

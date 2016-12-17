@@ -47,7 +47,8 @@
             <EditText
                 android:id="@+id/username"
                 style="@style/editText_s"
-                android:hint="QQ号" />
+                android:hint="QQ号"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/password"
@@ -88,4 +89,5 @@
 
     </LinearLayout>
 
+    <include layout="@layout/progress_bar" />
 </RelativeLayout>

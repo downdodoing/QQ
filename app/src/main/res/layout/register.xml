@@ -129,4 +129,6 @@
     </LinearLayout>
 
     <include layout="@layout/select_photo_from" />
+
+    <include layout="@layout/progress_bar" />
 </RelativeLayout>

@@ -25,7 +25,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".activity.Login">
+        <activity android:name=".activity.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +35,10 @@
         <activity android:name=".activity.ShowService"></activity>
         <activity android:name=".activity.PhoneNum"></activity>
         <activity android:name=".activity.Register"></activity>
+        <activity android:name=".activity.RegisterSuccess"></activity>
+        <activity android:name=".activity.Message"></activity>
+        <activity android:name=".activity.Contact"></activity>
+        <activity android:name=".activity.DynamicIn"></activity>
 
         <service android:name=".util.timer.service.MService"></service>
     </application>

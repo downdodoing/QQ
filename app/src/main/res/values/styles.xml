@@ -82,4 +82,27 @@
         <item name="android:layout_height">@dimen/circle_img_w</item>
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
+
+    <style name="main_page_menu_image">
+        <item name="android:layout_width">@dimen/main_page_menu_img_w</item>
+        <item name="android:layout_height">@dimen/main_page_menu_img_w</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginLeft">@dimen/margin_l_r</item>
+    </style>
+
+    <style name="main_page_menu_text" parent="wrap_content">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/bnt_textSize</item>
+        <item name="android:layout_marginLeft">@dimen/margin_l_r</item>
+    </style>
+
+    <style name="main_page_guide" parent="wrap_content">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/main_page_guide_textS</item>
+        <item name="android:textColor">@color/main_page_guide_textC</item>
+        <item name="android:drawablePadding">@dimen/main_page_guide_pa</item>
+    </style>
 </resources>

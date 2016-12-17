@@ -8,4 +8,7 @@
     <color name="title_back_color">#6f564b</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+
+    <color name="main_page_guide_textC">#abadbb</color>
+    <color name="main_page_guide_textC1">#6f564b</color>
 </resources>

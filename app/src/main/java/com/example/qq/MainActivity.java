@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_page);
         MyApplication.addActivity(this);
     }
 }

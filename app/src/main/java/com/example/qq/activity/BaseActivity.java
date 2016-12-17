@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 
 public abstract class BaseActivity extends TakePhotoActivity {
     private boolean isValid;
+    RelativeLayout progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,9 @@ public abstract class BaseActivity extends TakePhotoActivity {
                         } else if (v instanceof TextView) {
                             ((TextView) v).setTextColor(colorB);
                         }
-                        if (id == R.id.show_service) {
+                        if (id == R.id.log_in_bnt) {
+                            login();
+                        } else if (id == R.id.show_service) {
                             Intent intent = new Intent(activity, ShowService.class);
                             startActivity(intent);
                         } else if (id == R.id.register) {
@@ -74,6 +80,9 @@ public abstract class BaseActivity extends TakePhotoActivity {
                             getPhoto(v);
                         } else if (id == R.id.register_bnt) {
                             register();
+                            //注册成功页面
+                        } else if (id == R.id.r_s_login) {
+                            registerSuccess();
                         }
                         break;
                     case MotionEvent.ACTION_MOVE:
@@ -82,6 +91,12 @@ public abstract class BaseActivity extends TakePhotoActivity {
                 return true;
             }
         });
+    }
+
+    public void login() {
+    }
+
+    public void registerSuccess() {
     }
 
     public void register() {
@@ -124,5 +139,34 @@ public abstract class BaseActivity extends TakePhotoActivity {
 
     public void showToast(Activity activity, String hintStr) {
         Toast.makeText(activity, hintStr, Toast.LENGTH_SHORT).show();
+    }
+
+    //判断是否连网
+    public boolean isConnect() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isAvailable()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //设置加载进度条
+    public void setProgressBar() {
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    //判断输入框是否输入数据
+    public boolean isNull(String string) {
+        if (string.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
