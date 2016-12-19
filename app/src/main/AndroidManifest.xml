@@ -25,7 +25,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".activity.MainPage">
+        <activity android:name=".activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,6 +39,7 @@
         <activity android:name=".activity.Message"></activity>
         <activity android:name=".activity.Contact"></activity>
         <activity android:name=".activity.DynamicIn"></activity>
+        <activity android:name=".activity.MainPage"></activity>
 
         <service android:name=".util.timer.service.MService"></service>
     </application>

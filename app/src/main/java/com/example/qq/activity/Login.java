@@ -130,16 +130,16 @@ public class Login extends BaseActivity implements ILogin {
         userP.setSetDataListener(new ISetDataListener() {
             @Override
             public void failed() {
-                Login.this.showToast(Login.this, "登录失败！");
+                handler.sendEmptyMessage(0);
             }
 
             @Override
             public void success(Response response) {
                 try {
                     String result = response.body().string();
-
                     Message msg = new Message();
                     msg.obj = result;
+                    msg.what = 0;
                     handler.sendMessage(msg);
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -153,14 +153,10 @@ public class Login extends BaseActivity implements ILogin {
     public Param[] setParams(String mUsername, String mPassword) {
         Param[] params = new Param[2];
 
-        Param uName = new Param();
-        uName.key = "name";
-        uName.value = mUsername;
+        Param uName = new Param("name", mUsername);
         params[0] = uName;
 
-        Param psd = new Param();
-        psd.key = "password";
-        psd.value = mPassword;
+        Param psd = new Param("password", mPassword);
         params[1] = psd;
 
         return params;
@@ -171,14 +167,21 @@ public class Login extends BaseActivity implements ILogin {
         public void handleMessage(Message msg) {
             setProgressBar();
             String result = (String) msg.obj;
-            if (result.equals("0")) {
-                Login.this.showToast(Login.this, "用户名错误");
-            } else if (result.equals("1")) {
-                Login.this.showToast(Login.this, "密码错误");
-            } else {
-                Intent intent = new Intent(Login.this, MainPage.class);
-                intent.putExtra("username", mUsername);
-                startActivity(intent);
+            switch (msg.what) {
+                case 0:
+                    Login.this.showToast(Login.this, "登录失败！");
+                    break;
+                case 1:
+                    if (result.equals("0")) {
+                        Login.this.showToast(Login.this, "用户名错误");
+                    } else if (result.equals("1")) {
+                        Login.this.showToast(Login.this, "密码错误");
+                    } else {
+                        Intent intent = new Intent(Login.this, MainPage.class);
+                        intent.putExtra("username", mUsername);
+                        startActivity(intent);
+                    }
+                    break;
             }
         }
     }

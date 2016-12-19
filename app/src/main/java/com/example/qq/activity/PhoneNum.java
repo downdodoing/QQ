@@ -149,13 +149,16 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
         phoneNum = phone_num.getText().toString();
 
         if (11 == phoneNum.length()) {
-            if (!mCode.equals("")) {
-                //提交输入的验证码
-                handleVerificationCode(phoneNum);
-                verificationCode.submitCode(mCode);
-            } else {
-                this.showToast(this, "请输入验证码");
-            }
+//            if (!mCode.equals("")) {
+//                //提交输入的验证码
+//                handleVerificationCode(phoneNum);
+//                verificationCode.submitCode(mCode);
+//            } else {
+//                this.showToast(this, "请输入验证码");
+//            }
+            Intent intent = new Intent(this, Register.class);
+            intent.putExtra("phoneNum", phoneNum);
+            startActivity(intent);
         } else {
             this.showToast(this, "请输入正确的手机号码");
         }
@@ -218,9 +221,11 @@ public class PhoneNum extends BaseActivity implements IPhoneNum {
                 Intent intent = new Intent(this, Register.class);
                 intent.putExtra("phoneNum", phoneNum);
                 startActivity(intent);
+            } else {
+                this.showToast(this, "验证码错误");
             }
         } else {
-            this.showToast(this, "验证码错误");
+            this.showToast(this, "验证码发送失败");
         }
         verificationCode.unRegister();
     }

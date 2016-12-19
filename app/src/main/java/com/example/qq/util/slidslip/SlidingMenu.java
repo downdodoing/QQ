@@ -53,7 +53,6 @@ public class SlidingMenu extends HorizontalScrollView {
             typedArray.recycle();
         }
     }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //设置子View的初始宽度
@@ -137,5 +136,9 @@ public class SlidingMenu extends HorizontalScrollView {
 
 //        ViewHelper.setScaleX(mContent, rightScale);
 //        ViewHelper.setScaleY(mContent, rightScale);
+    }
+
+    public boolean getIsOpen() {
+        return isOpen;
     }
 }

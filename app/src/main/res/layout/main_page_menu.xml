@@ -19,6 +19,7 @@
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
+            android:onClick="clickMenuItem"
             android:src="@mipmap/twocode" />
 
         <LinearLayout
@@ -79,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_l_r"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:onClick="clickMenuItem">
 
             <ImageView
                 android:layout_width="18sp"
@@ -100,7 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_l_r"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:onClick="clickMenuItem">
 
             <ImageView
                 android:layout_width="18sp"

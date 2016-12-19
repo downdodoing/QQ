@@ -39,4 +39,5 @@ dependencies {
     compile project(':takephoto_library')
     compile files('libs/fastjson-1.2.2.jar')
     compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/sun.misc.BASE64Decoder.jar')
 }

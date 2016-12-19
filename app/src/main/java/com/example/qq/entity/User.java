@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class User {
     private String netName;
     private int age;
-    private byte[] head_photo;
+    private String head_photo;
     private String sex;
     private String phoneNum;
 
@@ -13,7 +13,7 @@ public class User {
 
     }
 
-    public User(String netName, String age, byte[] head_photo, String sex, String phoneNum) {
+    public User(String netName, String age, String head_photo, String sex, String phoneNum) {
         this.netName = netName;
         this.age = Integer.parseInt(age);
         this.head_photo = head_photo;
@@ -37,11 +37,11 @@ public class User {
         this.age = age;
     }
 
-    public byte[] getHead_photo() {
+    public String getHead_photo() {
         return head_photo;
     }
 
-    public void setHead_photo(byte[] head_photo) {
+    public void setHead_photo(String head_photo) {
         this.head_photo = head_photo;
     }
 
@@ -66,7 +66,7 @@ public class User {
         return "User{" +
                 "netName='" + netName + '\'' +
                 ", age=" + age +
-                ", head_photo=" + Arrays.toString(head_photo) +
+                ", head_photo=" + head_photo +
                 ", sex='" + sex + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 '}';

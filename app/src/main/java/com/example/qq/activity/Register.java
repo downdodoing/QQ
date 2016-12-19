@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.os.*;
+import android.os.Message;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -33,6 +35,7 @@ import com.example.qq.util.jph.CustomerHelper;
 import com.jph.takephoto.model.TResult;
 import com.squareup.okhttp.Response;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class Register extends BaseActivity implements IRegister {
@@ -57,6 +60,8 @@ public class Register extends BaseActivity implements IRegister {
     //用于存储后台返回的数据
     private String result;
 
+    private MyHandler handler;
+
     @Override
     public void initView(Bundle savedInstanceState) {
         setContentView(R.layout.register);
@@ -75,6 +80,9 @@ public class Register extends BaseActivity implements IRegister {
     @Override
     public void init() {
         activity = this;
+
+        handler = new MyHandler();
+
         progressBar = (RelativeLayout) findViewById(R.id.progress_bar);
         title = (TextView) findViewById(R.id.title_text);
         back = (TextView) findViewById(R.id.back);
@@ -174,23 +182,28 @@ public class Register extends BaseActivity implements IRegister {
     @Override
     public void takeSuccess(TResult result) {
         super.takeSuccess(result);
-        Glide.with(this).load(new File(result.getImages().get(0).getCompressPath())).transform(new GlideCircleTransform(this)).
+        String path = result.getImages().get(0).getCompressPath();
+        Glide.with(this).load(new File(path)).transform(new GlideCircleTransform(this)).
                 into(head_photo);
         set_photo.setVisibility(View.GONE);
 
-        getHeadPhoto();
+        getHeadPhoto(path);
     }
 
     //获取头像
-    public void getHeadPhoto() {
-        //设置为TRUE才能获取图片
-        head_photo.setDrawingCacheEnabled(true);
-        Bitmap bitmap = head_photo.getDrawingCache();
+    public void getHeadPhoto(String path) {
+        Bitmap bitmap = BitmapFactory.decodeFile(path);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         //清空画图缓存否则下次获取图片时还是原图片
         if (null != bitmap) {
-            compress_head_photo = getByteBitmap(bitmap);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         }
-        head_photo.setDrawingCacheEnabled(false);
+        compress_head_photo = bos.toByteArray();
+        try {
+            bos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -205,7 +218,7 @@ public class Register extends BaseActivity implements IRegister {
             } else if (this.isConnect()) {
                 this.setProgressBar();
                 setDefaultHeadPhoto();
-                User user = new User(mNetName, mAge, compress_head_photo, sex, mPhoneNum);
+                User user = new User(mNetName, mAge, Base64.encodeToString(compress_head_photo, Base64.DEFAULT), sex, mPhoneNum);
                 intentData(user);
             } else {
                 this.showToast(this, "请检查网络");
@@ -220,7 +233,7 @@ public class Register extends BaseActivity implements IRegister {
         userP.setSetDataListener(new ISetDataListener() {
             @Override
             public void failed() {
-                Register.this.showToast(Register.this, "注册失败！");
+                handler.sendEmptyMessage(0);
             }
 
             @Override
@@ -241,7 +254,6 @@ public class Register extends BaseActivity implements IRegister {
     //获取数据成功后
     public void successGetData(JSONObject jooo) {
         MyApplication.removeActitivy(2);
-        String flag = jooo.getString("flag");
         String name = jooo.getString("name");
         //跳转到注册成功页面
         Intent intent = new Intent(Register.this, RegisterSuccess.class);
@@ -308,5 +320,15 @@ public class Register extends BaseActivity implements IRegister {
             public void onAnimationRepeat(Animation animation) {
             }
         });
+    }
+
+    class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            if (0 == msg.what) {
+                activity.setProgressBar();
+                activity.showToast(Register.this, "注册失败！");
+            }
+        }
     }
 }

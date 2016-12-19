@@ -14,6 +14,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class OkHttpClientManager {
     private static final String TAG = "OkHttpClientManager";
@@ -113,10 +114,15 @@ public class OkHttpClientManager {
     }
 
     private void deliveryResult(Request request, final CallBackListener callBackListener) {
+        okHttpClient.setConnectTimeout(5, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(5, TimeUnit.SECONDS);
+        okHttpClient.setWriteTimeout(5, TimeUnit.SECONDS);
+
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
                 callBackListener.error(request, e);
+                e.printStackTrace();
             }
 
             @Override
