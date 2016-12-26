@@ -3,6 +3,7 @@ package com.example.qq.util.slidslip;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -13,6 +14,15 @@ import com.example.qq.R;
 import com.nineoldandroids.view.ViewHelper;
 
 public class SlidingMenu extends HorizontalScrollView {
+
+    //用于存储手指初始位置，便于判断是否拦截触摸事件
+    private float startY;
+    private float startX;
+
+    //用于存储移动的X和Y坐标
+    private float dX;
+    private float dY;
+
     //屏幕宽度
     private int mScreenWidth;
     //菜单栏宽度
@@ -53,6 +63,31 @@ public class SlidingMenu extends HorizontalScrollView {
             typedArray.recycle();
         }
     }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = ev.getX();
+                startY = ev.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                dX = ev.getX() - startX;
+                dY = ev.getY() - startY;
+                if (Math.abs(dX) - Math.abs(dY) > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case MotionEvent.ACTION_CANCEL:
+                break;
+            default:
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //设置子View的初始宽度

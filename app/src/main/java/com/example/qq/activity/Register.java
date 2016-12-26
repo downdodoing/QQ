@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.example.qq.MyApplication;
 import com.example.qq.R;
 import com.example.qq.activity.interfaceV.IRegister;
+import com.example.qq.entity.Param;
 import com.example.qq.entity.User;
 import com.example.qq.presenter.UserP;
 import com.example.qq.presenter.interfaceV.ISetDataListener;
@@ -192,12 +193,15 @@ public class Register extends BaseActivity implements IRegister {
 
     //获取头像
     public void getHeadPhoto(String path) {
+        //获取手机中的图片
         Bitmap bitmap = BitmapFactory.decodeFile(path);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         //清空画图缓存否则下次获取图片时还是原图片
         if (null != bitmap) {
+            //对图片进行压缩，100为不压缩，并写入字节流中
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         }
+        //获取图片的二进制
         compress_head_photo = bos.toByteArray();
         try {
             bos.close();
@@ -232,7 +236,7 @@ public class Register extends BaseActivity implements IRegister {
         UserP userP = new UserP();
         userP.setSetDataListener(new ISetDataListener() {
             @Override
-            public void failed() {
+            public void failed(Exception io) {
                 handler.sendEmptyMessage(0);
             }
 
@@ -248,7 +252,7 @@ public class Register extends BaseActivity implements IRegister {
                 }
             }
         });
-        userP.saveUser(joo);
+        userP.saveUser(new Param("user", joo.toJSONString()));
     }
 
     //获取数据成功后

@@ -15,6 +15,8 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import cn.smssdk.gui.layout.Res;
+
 public class UserModel implements IUserModel {
     private OkHttpClientManager okHttpClientManager;
     public String action;
@@ -25,13 +27,14 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public void getUser(Param[] params, final ISetDataListener setDataListener) {
+    public void login(Param[] params, final ISetDataListener setDataListener) {
         action = "login";
         String url = URL + action;
+
         okHttpClientManager._postAysn(url, new CallBackListener() {
             @Override
             public void error(Request re, IOException io) {
-                setDataListener.failed();
+                setDataListener.failed(io);
             }
 
             @Override
@@ -42,17 +45,14 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public void saveUser(JSONObject jooo, final ISetDataListener setDataListener) {
+    public void saveUser(Param param, final ISetDataListener setDataListener) {
         action = "register";
         String url = URL + action;
 
-        Param param = new Param();
-        param.key = "user";
-        param.value = jooo.toJSONString();
         okHttpClientManager._postAysn(url, new CallBackListener() {
             @Override
             public void error(Request re, IOException io) {
-                setDataListener.failed();
+                setDataListener.failed(io);
             }
 
             @Override

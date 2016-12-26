@@ -22,4 +22,8 @@
     <dimen name="main_page_menu_item_height">48dp</dimen>
     <dimen name="main_page_guide_textS">12sp</dimen>
     <dimen name="main_page_guide_pa">4dp</dimen>
+
+    <dimen name="message_title_back_raduio">5dp</dimen>
+
+    <dimen name="refresh_margin_left">60dp</dimen>
 </resources>

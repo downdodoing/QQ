@@ -12,7 +12,7 @@
         android:layout_height="23dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/margin_l_r"
-        android:drawableLeft="@mipmap/back"
+        android:drawableLeft="@mipmap/theme_back"
         android:text="返回" />
 
     <TextView

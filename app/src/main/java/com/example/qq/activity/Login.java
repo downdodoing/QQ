@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.qq.MyApplication;
@@ -129,7 +130,7 @@ public class Login extends BaseActivity implements ILogin {
         UserP userP = new UserP();
         userP.setSetDataListener(new ISetDataListener() {
             @Override
-            public void failed() {
+            public void failed(Exception io) {
                 handler.sendEmptyMessage(0);
             }
 
@@ -139,14 +140,19 @@ public class Login extends BaseActivity implements ILogin {
                     String result = response.body().string();
                     Message msg = new Message();
                     msg.obj = result;
-                    msg.what = 0;
+                    msg.what = 1;
                     handler.sendMessage(msg);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                try {
+                    response.body().close();
+                } catch (Exception ex) {
+
+                }
             }
         });
-        userP.getUser(setParams(mUsername, mPassword));
+        userP.login(setParams(mUsername, mPassword));
     }
 
     //设置参数

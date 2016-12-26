@@ -23,13 +23,13 @@ public class UserP implements IUserP {
     }
 
     @Override
-    public void saveUser(JSONObject joo) {
-        userModel.saveUser(joo, setDataListener);
+    public void saveUser(Param param) {
+        userModel.saveUser(param, setDataListener);
     }
 
     @Override
-    public void getUser(Param[] params) {
-        userModel.getUser(params, setDataListener);
+    public void login(Param[] params) {
+        userModel.login(params, setDataListener);
     }
 }
 

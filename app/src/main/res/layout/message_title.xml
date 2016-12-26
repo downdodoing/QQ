@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/main_page_guide_textC1">
+
+    <com.example.qq.util.circleImage.CircleImage
+        android:id="@+id/message_head_photo"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_l_r"
+        android:src="@mipmap/fit" />
+
+    <LinearLayout
+        android:layout_width="110dp"
+        android:layout_height="27dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/news"
+            style="@style/message_title_guide"
+            android:background="@drawable/message_title_show_ba_left_se"
+            android:text="消息"
+            android:textColor="@color/main_page_guide_textC1" />
+
+        <TextView
+            android:background="@drawable/message_title_show_ba_right"
+            android:id="@+id/phoneCall"
+            style="@style/message_title_guide"
+            android:text="电话"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/more"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_l_r"
+        android:src="@mipmap/more" />
+</RelativeLayout>

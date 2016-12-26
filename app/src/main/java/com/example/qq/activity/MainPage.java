@@ -40,7 +40,7 @@ public class MainPage extends TabActivity implements IMainPage {
 
     private TextView message, contact, dynamicIn, netName, signature;
 
-    private FrameLayout collection, album, file, schedule, business_card, member, make_up, wallet;
+    private FrameLayout collection, album, file, schedule, business_card, member, make_up, wallet, show_signature;
     private LinearLayout set, moon, show_info;
     private SlidingMenu menu;
 
@@ -92,6 +92,7 @@ public class MainPage extends TabActivity implements IMainPage {
         schedule = (FrameLayout) findViewById(R.id.schedule);
         business_card = (FrameLayout) findViewById(R.id.business_card);
         file = (FrameLayout) findViewById(R.id.file);
+        show_signature = (FrameLayout) findViewById(R.id.show_signature);
 
         show_info = (LinearLayout) findViewById(R.id.show_info);
 
@@ -103,6 +104,7 @@ public class MainPage extends TabActivity implements IMainPage {
         setOnTouch(schedule);
         setOnTouch(business_card);
         setOnTouch(file);
+        setOnTouch(show_signature);
 
         setOnTouch(show_info);
     }
@@ -124,9 +126,8 @@ public class MainPage extends TabActivity implements IMainPage {
     @Override
     public void getForwardData() {
         Intent intent = getIntent();
-//        userName = intent.getStringExtra("username");
-        userName = "280245088";
-
+        //userName = intent.getStringExtra("username");
+        userName = "718873250";
         setDataFromInter();
     }
 
@@ -134,7 +135,7 @@ public class MainPage extends TabActivity implements IMainPage {
         MainPageP mainPageP = new MainPageP();
         mainPageP.setSetDataListener(new ISetDataListener() {
             @Override
-            public void failed() {
+            public void failed(Exception io) {
                 handler.sendEmptyMessage(0);
             }
 
@@ -150,6 +151,11 @@ public class MainPage extends TabActivity implements IMainPage {
                 msg.what = 1;
                 msg.obj = result;
                 handler.sendMessage(msg);
+                try {
+                    response.body().close();
+                } catch (Exception ex) {
+
+                }
             }
         });
         Param param = new Param("name", userName);
@@ -274,7 +280,7 @@ public class MainPage extends TabActivity implements IMainPage {
         }
     }
 
-    //设置textView中的图片
+    //设置底部导航栏textView中的图片
     @Override
     public void setDrawable(TextView textView, int drawableId) {
         Drawable drawable = getResources().getDrawable(drawableId);

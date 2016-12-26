@@ -3,6 +3,8 @@ package com.example.qq;
 import android.app.Activity;
 import android.app.Application;
 
+import com.example.qq.util.exceptionCatch.ExceptionCatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,9 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //异常捕获类
+        ExceptionCatch exceptionCatch = ExceptionCatch.getInstace();
+        exceptionCatch.init(this);
     }
 
     public static void addActivity(Activity activity) {

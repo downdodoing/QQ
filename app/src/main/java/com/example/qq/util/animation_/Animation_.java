@@ -8,10 +8,6 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
-/**
- * Created by 小凳子 on 2016/11/24.
- */
-
 public class Animation_ {
     private View view;
     //移动动画
@@ -56,10 +52,35 @@ public class Animation_ {
 
     public void setRotateAnimation() {
         rotateAnimation = new RotateAnimation(
-                0, 360,
+                0, -90,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f
         );
-        animation_t(rotateAnimation);
+        rotateAnimation.setDuration(400);
+        //动画完了后停止在当前位置
+        rotateAnimation.setFillAfter(true);
+        view.startAnimation(rotateAnimation);
+    }
+
+    public void setRotateAnimationOpposite() {
+        rotateAnimation = new RotateAnimation(
+                0, 180,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f
+        );
+        rotateAnimation.setDuration(400);
+        //动画完了后停止在当前位置
+        rotateAnimation.setFillAfter(true);
+        view.startAnimation(rotateAnimation);
+    }
+
+    public void setReserveRotateAnimationOpposite() {
+        rotateAnimation = new RotateAnimation(
+                180, 0,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f
+        );
+        rotateAnimation.setDuration(400);
+        //动画完了后停止在当前位置
+        rotateAnimation.setFillAfter(true);
+        view.startAnimation(rotateAnimation);
     }
 
     public void animation_t(Animation animation) {

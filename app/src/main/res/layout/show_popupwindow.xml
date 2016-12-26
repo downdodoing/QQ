@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/message_title_popupwindow"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/more_chat"
+        style="@style/message_popupwindow"
+        android:drawableLeft="@mipmap/morechat"
+        android:text="发起多人聊天" />
+
+    <include layout="@layout/split_line" />
+
+    <TextView
+        android:id="@+id/addfriend"
+        style="@style/message_popupwindow"
+        android:drawableLeft="@mipmap/addfriend"
+        android:text="添加好友" />
+
+    <include layout="@layout/split_line" />
+
+    <TextView
+        android:id="@+id/scan"
+        style="@style/message_popupwindow"
+        android:drawableLeft="@mipmap/scan"
+        android:text="扫一扫" />
+
+    <include layout="@layout/split_line" />
+
+    <TextView
+        android:id="@+id/deliver"
+        style="@style/message_popupwindow"
+        android:drawableLeft="@mipmap/deliver"
+        android:text="面对面快传" />
+
+    <include layout="@layout/split_line" />
+
+    <TextView
+        android:id="@+id/pay"
+        style="@style/message_popupwindow"
+        android:drawableLeft="@mipmap/pay"
+        android:text="付款" />
+</LinearLayout>

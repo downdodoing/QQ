@@ -11,4 +11,9 @@
 
     <color name="main_page_guide_textC">#abadbb</color>
     <color name="main_page_guide_textC1">#6f564b</color>
+    <color name="main_page_title_c">#513d34</color>
+    <color name="main_page_theme_c">#eaedee</color>
+
+    <color name="light_blue">#6593cb</color>
+    <color name="gray">#aaaaaa</color>
 </resources>

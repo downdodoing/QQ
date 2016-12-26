@@ -2,5 +2,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_parent"
     android:alpha="0.2"
-    android:background="@color/white"
-    android:visibility="gone"></LinearLayout>
+    android:background="@color/white"></LinearLayout>

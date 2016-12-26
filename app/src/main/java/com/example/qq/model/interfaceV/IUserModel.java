@@ -6,8 +6,8 @@ import com.example.qq.presenter.interfaceV.ISetDataListener;
 
 public interface IUserModel {
 
-    public void getUser(Param[] params, ISetDataListener setDataListener);
+    public void login(Param[] params, ISetDataListener setDataListener);
 
-    public void saveUser(JSONObject jooo, ISetDataListener setDataListener);
+    public void saveUser(Param param, ISetDataListener setDataListener);
 
 }

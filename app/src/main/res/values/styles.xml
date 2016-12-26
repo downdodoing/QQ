@@ -105,4 +105,34 @@
         <item name="android:textColor">@color/main_page_guide_textC</item>
         <item name="android:drawablePadding">@dimen/main_page_guide_pa</item>
     </style>
+
+    <style name="message_title_guide">
+        <item name="android:layout_width">@dimen/weight_w_h</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/edittext_size</item>
+    </style>
+
+    <style name="message_popupwindow">
+        <item name="android:layout_width">148dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/margin_l_r</item>
+        <item name="android:drawablePadding">@dimen/margin_l_r</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/log_text_s</item>
+    </style>
+
+    <style name="refresh_textview" parent="wrap_content">
+        <item name="android:textSize">@dimen/edittext_size</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="refresh_progressbar">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginLeft">@dimen/refresh_margin_left</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
 </resources>

@@ -27,7 +27,7 @@ public class MainPageModel implements IMainPageModel {
         okHttpClientManager._postAysn(url, new CallBackListener() {
             @Override
             public void error(Request re, IOException io) {
-                setDataListener.failed();
+                setDataListener.failed(io);
             }
 
             @Override

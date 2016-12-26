@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class OkHttpClientManager {
-    private static final String TAG = "OkHttpClientManager";
     private OkHttpClient okHttpClient;
     private static OkHttpClientManager okHttpClientManager;
 
@@ -107,26 +106,22 @@ public class OkHttpClientManager {
         FormEncodingBuilder builder = new FormEncodingBuilder();
         for (Param param : params) {
             builder.add(param.key, param.value);
-        }
+    }
 
         RequestBody requestBody = builder.build();
         return new Request.Builder().url(url).post(requestBody).build();
     }
 
     private void deliveryResult(Request request, final CallBackListener callBackListener) {
-        okHttpClient.setConnectTimeout(5, TimeUnit.SECONDS);
-        okHttpClient.setReadTimeout(5, TimeUnit.SECONDS);
-        okHttpClient.setWriteTimeout(5, TimeUnit.SECONDS);
 
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
                 callBackListener.error(request, e);
-                e.printStackTrace();
             }
 
             @Override
-            public void onResponse(Response response) throws IOException {
+            public void onResponse(Response response) {
                 callBackListener.success(response);
             }
         });
